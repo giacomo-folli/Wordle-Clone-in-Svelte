@@ -1,0 +1,23 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --orange: #f73c00;
+  --bg: #22292f;
+  --green: #00f780;
+  --dark: #4f4f4f;
+
+  --night: #0a0a0aff;
+  --eerie: #212121ff;
+  --jet: #2b2b2bff;
+  --onyx: #404040ff;
+  --ash: #bfd4d3ff;
+  --whish: #f6f6f9ff;
+}
+
+body {
+  font-family: Helvetica, sans-serif;
+  background-color: var(--eerie);
+}
