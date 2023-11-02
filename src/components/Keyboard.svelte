@@ -12,6 +12,7 @@
   const row1 = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"];
   const row2 = ["a", "s", "d", "f", "g", "h", "j", "k", "l"];
   const row3 = ["ENTER", "z", "x", "c", "v", "b", "n", "m", "DEL"];
+  const admissible_keys = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z', 'Enter', 'Backspace']
 
   const handleDel = () => {
     if ($gameInfo.char === 0) return;
@@ -64,23 +65,50 @@
     else guess.set("");
   };
 
-  const keyPress = (key = "") => {
-    if (key == "DEL") handleDel();
-    else if (key == "ENTER") handleEnter();
+  // user keyboard events
+  let keyEvent = "";
+
+  function handleKeyPress(event) {
+    keyEvent = event.key;
+    if (!admissible_keys.includes(keyEvent)) return;
+
+    if (keyEvent == "Backspace") handleDel();
+    else if (keyEvent == "Enter") handleEnter();
     else {
+      keyEvent = keyEvent.toUpperCase();
       let { attempt, char } = $gameInfo;
 
       if (char > 4) return;
 
       board.update((prevBoard) => {
         const newBoard = prevBoard;
-        newBoard[attempt][char++] = key;
+        newBoard[attempt][char++] = keyEvent;
         return newBoard;
       });
 
       gameInfo.set({ attempt, char });
     }
+  }
+
+  const keyPress = (key = "") => {
+    if (key == "DEL") handleDel();
+    else if (key == "ENTER") handleEnter();
+    else {
+      let { attempt, char } = $gameInfo;
+      
+      if (char > 4) return;
+      
+      board.update((prevBoard) => {
+        const newBoard = prevBoard;
+        newBoard[attempt][char++] = key;
+        return newBoard;
+      });
+      
+      gameInfo.set({ attempt, char });
+    }
   };
+
+  //window.addEventListener("keydown", handleKeyPress);
 </script>
 
 <div class="keyboard">
@@ -102,6 +130,9 @@
     {/each}
   </div>
 </div>
+
+<svelte:window on:keydown|preventDefault={handleKeyPress} />
+
 
 <style>
   .keyboard {
