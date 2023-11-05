@@ -7,12 +7,42 @@
     GAME_WORD,
     guess,
     gameOver,
+    wordList,
   } from "../store.js";
 
   const row1 = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"];
   const row2 = ["a", "s", "d", "f", "g", "h", "j", "k", "l"];
   const row3 = ["ENTER", "z", "x", "c", "v", "b", "n", "m", "DEL"];
-  const admissible_keys = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z', 'Enter', 'Backspace']
+  const admissible_keys = [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h",
+    "i",
+    "j",
+    "k",
+    "l",
+    "m",
+    "n",
+    "o",
+    "p",
+    "q",
+    "r",
+    "s",
+    "t",
+    "u",
+    "v",
+    "w",
+    "x",
+    "y",
+    "z",
+    "Enter",
+    "Backspace",
+  ];
 
   const handleDel = () => {
     if ($gameInfo.char === 0) return;
@@ -90,20 +120,21 @@
     }
   }
 
+  // handle keyboard user input
   const keyPress = (key = "") => {
     if (key == "DEL") handleDel();
     else if (key == "ENTER") handleEnter();
     else {
       let { attempt, char } = $gameInfo;
-      
+
       if (char > 4) return;
-      
+
       board.update((prevBoard) => {
         const newBoard = prevBoard;
         newBoard[attempt][char++] = key;
         return newBoard;
       });
-      
+
       gameInfo.set({ attempt, char });
     }
   };
@@ -132,7 +163,6 @@
 </div>
 
 <svelte:window on:keydown|preventDefault={handleKeyPress} />
-
 
 <style>
   .keyboard {
