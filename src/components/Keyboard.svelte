@@ -44,6 +44,8 @@
     "Backspace",
   ];
 
+  export let hide;
+
   const handleDel = () => {
     if ($gameInfo.char === 0) return;
 
@@ -142,7 +144,7 @@
   //window.addEventListener("keydown", handleKeyPress);
 </script>
 
-<div class="keyboard">
+<div class={hide ? 'keyboard hide' : 'keyboard'}>
   <div class="row">
     {#each row1 as char}
       <Key {char} {keyPress} />
@@ -176,6 +178,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+
+  .hide {
+    display: none;
   }
 
   .row {
