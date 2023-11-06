@@ -82,19 +82,24 @@
   };
 </script>
 
-<div class="center">
-  <h3>The correct word was: <strong>{$GAME_WORD}</strong></h3>
-  <h3>You guessed: <strong>{$guess}</strong></h3>
-</div>
+<div class="container">
+  <div class="board">
+    <Board />
+  </div>
+  <div class="center">
+    <h3>The correct word was: <strong>{$GAME_WORD}</strong></h3>
+    <h3>You guessed: <strong>{$guess}</strong></h3>
 
-<Board />
-
-<div class="center flexed">
-  <button class="share tooltip" type="button" on:click={shareBoard}
-    ><span class="tooltiptext" id="myTooltip">Copy to clipboard</span>
-    Share
-  </button>
-  <button class="retry" type="button" on:click={playAgain}>Play Again</button>
+    <div class="center flexed">
+      <button class="share tooltip" type="button" on:click={shareBoard}
+        ><span class="tooltiptext" id="myTooltip">Copy to clipboard</span>
+        Share
+      </button>
+      <button class="retry" type="button" on:click={playAgain}
+        >Play Again</button
+      >
+    </div>
+  </div>
 </div>
 
 <style>
@@ -116,10 +121,21 @@
     border: none;
   }
 
+  .container {
+
+    padding: 10px 15vw;
+    display: grid;
+    align-items: center;
+  }
+
+  .board {
+    grid-column-start: 1;
+    grid-column-end: 2;
+  }
+
   .center {
-    margin: 20px auto;
+    grid-column: 3;
     width: fit-content;
-    text-align: center;
   }
 
   .flexed {
