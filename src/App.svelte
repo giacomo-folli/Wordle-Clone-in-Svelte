@@ -36,14 +36,16 @@
         <Board />
         <Keyboard {hide} />
       </div>
+
+      <div class={hide ? "switch_btn act" : "switch_btn"}>
+        <button type="button" on:click={switchLogic}>
+          <img {src} alt="keyboard icon" class="switcher" />
+        </button>
+      </div>
     {/if}
   </div>
 
-  <div class={hide ? "switch_btn act" : "switch_btn"}>
-    <button type="button" on:click={switchLogic}>
-      <img {src} alt="keyboard icon" class="switcher" />
-    </button>
-  </div>
+  
 </main>
 
 <style>
