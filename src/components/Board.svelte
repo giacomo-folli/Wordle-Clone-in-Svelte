@@ -14,11 +14,6 @@
 </div>
 
 <style>
-  .game-board {
-    margin: 20px auto;
-    width: fit-content;
-  }
-
   .row {
     display: flex;
   }

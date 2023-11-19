@@ -5,8 +5,9 @@
 
 :root {
   --orange: #f73c00;
-  --bg: #22292f;
-  --green: #00f780;
+  --blue:rgb(57, 173, 255);
+  --bg: #46a5f8;
+  --green: #1db46b;
   --dark: #4f4f4f;
 
   --night: #0a0a0aff;

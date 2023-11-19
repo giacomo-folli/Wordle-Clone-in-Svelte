@@ -82,12 +82,12 @@
   };
 </script>
 
-<div class="container">
+<div class="container fail_cont">
   <div class="board">
     <Board />
   </div>
   <div class="center">
-    <h3>The correct word was: <strong>{$GAME_WORD}</strong></h3>
+    <h3>Correct guess: <strong>{$GAME_WORD}</strong></h3>
     <h3>You guessed: <strong>{$guess}</strong></h3>
 
     <div class="center flexed">
@@ -114,6 +114,7 @@
 
   button {
     background-color: var(--orange);
+    border-radius: 3px;
     color: white;
     margin-top: 20px;
     padding: 20px 50px;
@@ -126,6 +127,8 @@
     padding: 10px 15vw;
     display: grid;
     align-items: center;
+
+    gap: 20px; 
   }
 
   .board {
@@ -145,13 +148,14 @@
 
   .share {
     flex: 0.5;
-    background-color: greenyellow;
+    background-color: var(--green);
     font-size: large;
     font-weight: bolder;
     margin: 2px;
   }
 
   .retry {
+    background-color: var(--blue);
     flex: 0.5;
     margin: 2px;
     font-size: large;
@@ -166,8 +170,8 @@
   .tooltip .tooltiptext {
     visibility: hidden;
     width: 140px;
-    background-color: #555;
-    color: #fff;
+    background-color: #ffffffcc;
+    color: #000000cc;
     text-align: center;
     border-radius: 6px;
     padding: 5px;
@@ -194,5 +198,46 @@
   .tooltip:hover .tooltiptext {
     visibility: visible;
     opacity: 1;
+  }
+
+  @media screen and (max-width: 700px) {
+    .container {
+      gap: 5px;
+    }
+
+    .fail_cont {
+      font-size: 10px;
+      border-radius: 5px;
+    }
+
+    .flexed > button {
+      color: white;
+      padding: 10px;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    .container {
+      gap: none; 
+    }
+    
+    .fail_cont {
+      font-size: 10px;
+      border-radius: 5px;
+    }
+
+    .flexed {
+      flex-direction: column;
+    }
+
+    .flexed > button {
+      color: white;
+      margin-top: 0;
+      padding: 10px;
+    }
+
+    .center > h3 {
+      display: none;
+    }
   }
 </style>
