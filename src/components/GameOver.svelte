@@ -18,14 +18,13 @@
       console.log("Content copied to clipboard");
 
       // Alert the copied text
-      // alert("Copied the text: " + text);
+      confirm("Copied the text: " + text);
     } catch (err) {
       console.error("Failed to copy: ", err);
     }
   };
 
   const playAgain = () => {
-    console.log("play again");
     const word =
       wordList[Math.floor(Math.random() * wordList.length)].toUpperCase();
     GAME_WORD.set(word);
@@ -34,14 +33,11 @@
     colors.set(createGrid());
     board.set(createGrid());
     gameOver.set(false);
-
-    console.log($GAME_WORD);
   };
 
   const emoji = ["🟩", "🟥", "⚪"];
 
   const shareBoard = () => {
-    console.log("share board");
     // get the values of the charts
     let box = [];
 
@@ -68,15 +64,11 @@
     let mex = "The correct word was: " + $GAME_WORD + "\n";
     mex += "You guessed: " + $guess + "\n";
 
-    console.log(box);
-
     // write the board
     for (let i = 0; i < box.length; i++) {
       if (i % 5 == 0) mex += "\n";
       mex += box[box.length - i - 1];
     }
-
-    console.log(mex);
 
     copyToClip(mex);
   };
@@ -87,8 +79,16 @@
     <Board />
   </div>
   <div class="center">
-    <h3>Correct guess: <strong>{$GAME_WORD}</strong></h3>
-    <h3>You guessed: <strong>{$guess}</strong></h3>
+    <div class="scores">
+      <div class="scores-row">
+        <span>Correct guess:</span>
+        <span>{$GAME_WORD}</span>
+      </div>
+      <div class="scores-row">
+        <span>You guessed:</span>
+        <span>{$guess}</span>
+      </div>
+    </div>
 
     <div class="center flexed">
       <button class="share tooltip" type="button" on:click={shareBoard}
@@ -103,13 +103,24 @@
 </div>
 
 <style>
-  strong {
-    font-weight: 900;
+  .scores {
+    padding: 20px 0;
+    font-family:
+      "Jersey 25",
+      system-ui,
+      -apple-system,
+      Ubuntu,
+      sans-serif;
   }
 
-  h3 {
+  .scores-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
     color: var(--whish);
     font-size: 2em;
+    margin-block: 15px;
   }
 
   button {
@@ -123,12 +134,11 @@
   }
 
   .container {
-
     padding: 10px 15vw;
     display: grid;
     align-items: center;
 
-    gap: 20px; 
+    gap: 20px;
   }
 
   .board {
@@ -218,9 +228,9 @@
 
   @media screen and (max-width: 600px) {
     .container {
-      gap: none; 
+      gap: none;
     }
-    
+
     .fail_cont {
       font-size: 10px;
       border-radius: 5px;

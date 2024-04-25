@@ -1,5 +1,5 @@
 # Svelte project: Wordle Clone
-I built this project using SvelteKit, a meta-framework built on top of Svelte for building rich web apps.
+I built this project using the Svelte language.
 
 This is a personal project built for fun and for educational purposes. :)
 
